@@ -259,14 +259,14 @@ VALUES ('Alistar', 'Braum', 25.13, 39.39, '33');
 INSERT INTO BuildUsesItem (ChampionName, SkillOrder, ItemName)
 VALUES ('Ambessa',
            'QEW', 'Heartsteel');
-INSERT INTO BuildUsesItem (ChampionName, SkillOrder, PatchID, ItemName)
+INSERT INTO BuildUsesItem (ChampionName, SkillOrder, ItemName)
 VALUES ('Alistar',
             'QWE', 'Redemption');
-INSERT INTO BuildUsesItem (ChampionName, SkillOrder, PatchID, ItemName)
+INSERT INTO BuildUsesItem (ChampionName, SkillOrder, ItemName)
 VALUES ('Ezreal',
            'QEW', 'Eclipse');
-INSERT INTO BuildUsesItem (ChampionName, SkillOrder, PatchID, ItemName)
+INSERT INTO BuildUsesItem (ChampionName, SkillOrder, ItemName)
 VALUES ('Azir',
            'WQE', 'Zhonya''s Hourglass');
-INSERT INTO BuildUsesItem (ChampionName, SkillOrder, PatchID, ItemName)
+INSERT INTO BuildUsesItem (ChampionName, SkillOrder, ItemName)
 VALUES ('Pantheon', 'QWE', 'Infinity Edge');
