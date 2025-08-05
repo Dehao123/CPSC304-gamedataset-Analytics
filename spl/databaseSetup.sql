@@ -105,6 +105,7 @@ VALUES (104, "Platinum", "Jungle");
 INSERT INTO Amateur_player (UID, Rank, Preferred_role)
 VALUES (105, "Diamond", "ADC");
 
+
 INSERT INTO Esports_player1 (UID, Rank, Team)
 VALUES (201, "Challenger", "GenG");
 INSERT INTO Esports_player1 (UID, Rank, Team)
@@ -115,6 +116,7 @@ INSERT INTO Esports_player1 (UID, Rank, Team)
 VALUES (204, "Challenger", "AL");
 INSERT INTO Esports_player1 (UID, Rank, Team)
 VALUES (205, "Challenger", "BLG");
+
 
 INSERT INTO Esports_player2 (Team, Position)
 VALUES ("GenG", "Top");
@@ -137,6 +139,7 @@ VALUES ("AL", "Hope");
 INSERT INTO Esports_player3 (Team, StageName)
 VALUES ("BLG", "ON");
 
+
 INSERT INTO Champions(ChampionName, Tier, Archetype, RoleName)
 VALUES ("Ambessa", "OP",
            "Fighter", "Top");
@@ -152,6 +155,7 @@ VALUES ("Ezreal", "2",
 INSERT INTO Champions(ChampionName, Tier, Archetype, RoleName)
 VALUES ("Alistar", "OP",
            "Tank", "Support");
+
 
 INSERT INTO Stats(ChampionName, Winrate, Pickrate, Banrate)
 VALUES ("Alistar", "54.69 %",
@@ -169,6 +173,7 @@ INSERT INTO Stats(ChampionName, Winrate, Pickrate, Banrate)
 VALUES ("Ambessa", "50.94 %",
            "13.67 %", "5.88 %");
 
+
 INSERT INTO Matchup(ChampionName, Counter_Champion, PatchID, MatchupWinrate,
                     MatchesPlayed)
 VALUES ("Ambessa", "Gwen", "46.15 %", "39");
@@ -185,6 +190,7 @@ INSERT INTO Matchup(ChampionName, Counter_Champion, PatchID, MatchupWinrate,
                     MatchesPlayed)
 VALUES ("Alistar", "Braum", "39.39 %", "33");
 
+
 INSERT INTO Role (RoleName, Map_area)
 VALUES ("Top", "Top Lane");
 INSERT INTO Role (RoleName, Map_area)
@@ -196,6 +202,7 @@ VALUES ("ADC", "Bot Lane");
 INSERT INTO Role (RoleName, Map_area)
 VALUES ("Support", "Bot Lane");
 
+
 INSERT INTO Patch (PatchID, date)
 VALUES ("25.14", "2025 - 07 - 15");
 INSERT INTO Patch (PatchID, date)
@@ -206,6 +213,7 @@ INSERT INTO Patch (PatchID, date)
 VALUES ("25.11", "2025 - 05 - 27");
 INSERT INTO Patch (PatchID, date)
 VALUES ("25.10", "2025 - 05 - 13");
+
 
 INSERT INTO Item (Name, Effect)
 VALUES ("Infinity Edge", "Massively enhances critical strikes.");
@@ -223,6 +231,7 @@ VALUES ("Zhonya's Hourglass", "ACTIVE: Become invincible for the duration but un
 INSERT INTO Item (Name, Effect)
 VALUES ("Eclipse", "Grants Attack damage and a shield.");
 
+
 INSERT INTO Build (ChampionName, SkillOrder, PatchID)
 VALUES ("Ambessa", "QEW", "15.14");
 INSERT INTO Build (ChampionName, SkillOrder, PatchID)
@@ -233,6 +242,7 @@ INSERT INTO Build (ChampionName, SkillOrder, PatchID)
 VALUES ("Azir", "WQE", "15.11");
 INSERT INTO Build (ChampionName, SkillOrder, PatchID)
 VALUES ("Pantheon", "QWE", "15.10");
+
 
 INSERT INTO BuildUsesItem (ChampionName, SkillOrder, PatchID, ItemName)
 VALUES ("Ambessa",
