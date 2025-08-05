@@ -228,14 +228,24 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
 
 	function handleResetRequest()
 	{
-		global $db_conn;
-		// Drop old table
-		executePlainSQL("DROP TABLE demoTable");
+		global $db_conn, $flag;
+		echo "<br> Resetting! <br>";
+		$success = true;
 
-		// Create new table
-		echo "<br> creating new table <br>";
-		executePlainSQL("CREATE TABLE demoTable (id int PRIMARY KEY, name char(30))");
-		oci_commit($db_conn);
+		$sql_script = file_get_contents('databaseSetup.sql');
+		$statements = explode(';', $sql_script);
+    	foreach ($statements as $statement) {
+            if (trim($statement) != '') {
+            	executePlainSQL($statement);
+        	}
+    	}
+
+		if ($success) {
+			echo "<br> Reset Successful! <br>";
+		} else {
+			echo "<br> Reset Failed. check errors <br>";
+		}
+
 	}
 
 	function handleInsertRequest()

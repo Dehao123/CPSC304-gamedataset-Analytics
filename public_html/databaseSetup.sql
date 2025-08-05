@@ -12,13 +12,13 @@ DROP TABLE Esports_player3;
 DROP TABLE Amateur_player;
 
 CREATE TABLE Amateur_player (
-    UID INTEGER PRIMARY KEY,
+    UserID INTEGER PRIMARY KEY,
     Rank VARCHAR(20),
     Preferred_role VARCHAR(10)
 );
 
 CREATE TABLE Esports_player1 (
-   UID INTEGER PRIMARY KEY,
+   UserID INTEGER PRIMARY KEY,
    Rank VARCHAR(20),
    Team VARCHAR(30)
 );
@@ -40,7 +40,7 @@ CREATE TABLE Role (
 
 CREATE TABLE Patch (
    PatchID DECIMAL(4,2) PRIMARY KEY,
-   date VARCHAR(10)
+   PatchDate VARCHAR(10)
 );
 
 CREATE TABLE Item (
@@ -102,27 +102,27 @@ CREATE TABLE BuildUsesItem (
 -- INSERT INTO branch VALUES (1, 'ABC', '123 Charming Ave', 'Vancouver', '6041234567');
 -- INSERT INTO branch VALUES (2, 'DEF', '123 Coco Ave', 'Vancouver', '6044567890');
 
-INSERT INTO Amateur_player (UID, Rank, Preferred_role)
+INSERT INTO Amateur_player (UserID, Rank, Preferred_role)
 VALUES (101, 'Bronze', 'Mid');
-INSERT INTO Amateur_player (UID, Rank, Preferred_role)
+INSERT INTO Amateur_player (UserID, Rank, Preferred_role)
 VALUES (102, 'Silver', 'Top');
-INSERT INTO Amateur_player (UID, Rank, Preferred_role)
+INSERT INTO Amateur_player (UserID, Rank, Preferred_role)
 VALUES (103, 'Gold', 'Support');
-INSERT INTO Amateur_player (UID, Rank, Preferred_role)
+INSERT INTO Amateur_player (UserID, Rank, Preferred_role)
 VALUES (104, 'Platinum', 'Jungle');
-INSERT INTO Amateur_player (UID, Rank, Preferred_role)
+INSERT INTO Amateur_player (UserID, Rank, Preferred_role)
 VALUES (105, 'Diamond', 'ADC');
 
 
-INSERT INTO Esports_player1 (UID, Rank, Team)
+INSERT INTO Esports_player1 (UserID, Rank, Team)
 VALUES (201, 'Challenger', 'GenG');
-INSERT INTO Esports_player1 (UID, Rank, Team)
+INSERT INTO Esports_player1 (UserID, Rank, Team)
 VALUES (202, 'Challenger', 'T1');
-INSERT INTO Esports_player1 (UID, Rank, Team)
+INSERT INTO Esports_player1 (UserID, Rank, Team)
 VALUES (203, 'Challenger', 'HLE');
-INSERT INTO Esports_player1 (UID, Rank, Team)
+INSERT INTO Esports_player1 (UserID, Rank, Team)
 VALUES (204, 'Challenger', 'AL');
-INSERT INTO Esports_player1 (UID, Rank, Team)
+INSERT INTO Esports_player1 (UserID, Rank, Team)
 VALUES (205, 'Challenger', 'BLG');
 
 
@@ -166,37 +166,37 @@ VALUES ('Alistar', 'OP',
 
 
 INSERT INTO Stats(ChampionName, Winrate, Pickrate, Banrate)
-VALUES ('Alistar', '54.69',
-           '19.55', '4.20');
+VALUES ('Alistar', 54.69,
+           19.55, 4.20);
 INSERT INTO Stats(ChampionName, Winrate, Pickrate, Banrate)
-VALUES ('Ezreal', '47.14',
-           '11.72', '2.50');
+VALUES ('Ezreal', 47.14,
+           11.72, 2.50);
 INSERT INTO Stats(ChampionName, Winrate, Pickrate, Banrate)
-VALUES ('Azir', '52.23',
-           '10.44', '2.38 %');
+VALUES ('Azir', 52.23,
+           10.44, 2.38);
 INSERT INTO Stats(ChampionName, Winrate, Pickrate, Banrate)
-VALUES ('Pantheon', '52.04',
-           '16.51', '19.58');
+VALUES ('Pantheon', 52.04,
+           16.51, 19.58);
 INSERT INTO Stats(ChampionName, Winrate, Pickrate, Banrate)
-VALUES ('Ambessa', '50.94',
-           '13.67', '5.88');
+VALUES ('Ambessa', 50.94,
+           13.67, 5.88);
 
 
 INSERT INTO Matchup(ChampionName, Counter_Champion, PatchID, MatchupWinrate,
                     MatchesPlayed)
-VALUES ('Ambessa', 'Gwen', 25.14, '46.15', '39');
+VALUES ('Ambessa', 'Gwen', 25.14, 46.15, '39');
 INSERT INTO Matchup(ChampionName, Counter_Champion, PatchID, MatchupWinrate,
                     MatchesPlayed)
-VALUES ('Pantheon', 'Trundle', 25.14, '51.35', '37');
+VALUES ('Pantheon', 'Trundle', 25.14, 51.35, '37');
 INSERT INTO Matchup(ChampionName, Counter_Champion, PatchID, MatchupWinrate,
                     MatchesPlayed)
-VALUES ('Azir', 'Taliyah', 25.14, '42.55', '47');
+VALUES ('Azir', 'Taliyah', 25.14, 42.55, '47');
 INSERT INTO Matchup(ChampionName, Counter_Champion, PatchID, MatchupWinrate,
                     MatchesPlayed)
-VALUES ('Kai''Sa', 'Lucian', 25.13, '43.33', '30');
+VALUES ('Kai''Sa', 'Lucian', 25.13, 43.33, '30');
 INSERT INTO Matchup(ChampionName, Counter_Champion, PatchID, MatchupWinrate,
                     MatchesPlayed)
-VALUES ('Alistar', 'Braum', 25.13, '39.39', '33');
+VALUES ('Alistar', 'Braum', 25.13, 39.39, '33');
 
 
 INSERT INTO Role (RoleName, Map_area)
@@ -211,15 +211,15 @@ INSERT INTO Role (RoleName, Map_area)
 VALUES ('Support', 'Bot Lane');
 
 
-INSERT INTO Patch (PatchID, date)
+INSERT INTO Patch (PatchID, PatchDate)
 VALUES (25.14, '2025 - 07 - 15');
-INSERT INTO Patch (PatchID, date)
+INSERT INTO Patch (PatchID, PatchDate)
 VALUES (25.13, '2025 - 06 - 24');
-INSERT INTO Patch (PatchID, date)
+INSERT INTO Patch (PatchID, PatchDate)
 VALUES (25.13, '2025 - 06 - 10');
-INSERT INTO Patch (PatchID, date)
+INSERT INTO Patch (PatchID, PatchDate)
 VALUES (25.13, '2025 - 05 - 27');
-INSERT INTO Patch (PatchID, date)
+INSERT INTO Patch (PatchID, PatchDate)
 VALUES (25.13, '2025 - 05 - 13');
 
 
