@@ -68,7 +68,7 @@ CREATE TABLE Stats (
 CREATE TABLE Build (
    ChampionName VARCHAR(50),
    SkillOrder CHAR(3),
-   PatchID VARCHAR(10) NOT NULL,
+   PatchID DECIMAL(4,2) NOT NULL,
    PRIMARY KEY (ChampionName, SkillOrder),
    FOREIGN KEY (ChampionName) REFERENCES Champions ON DELETE CASCADE,
    FOREIGN KEY (PatchID) REFERENCES Patch ON DELETE CASCADE
@@ -77,7 +77,7 @@ CREATE TABLE Build (
 CREATE TABLE Matchup (
    ChampionName VARCHAR(50),
    Counter_Champion VARCHAR(50),
-   PatchID VARCHAR(10),
+   PatchID DECIMAL(4,2),
    MatchupWinrate DECIMAL(5,2),
    MatchesPlayed INTEGER,
    PRIMARY KEY (ChampionName, Counter_Champion),
@@ -93,7 +93,6 @@ CREATE TABLE BuildUsesItem (
    PRIMARY KEY (ChampionName, SkillOrder, ItemName),
    FOREIGN KEY (ChampionName, SkillOrder) REFERENCES Build ON DELETE CASCADE,
    FOREIGN KEY (ItemName) REFERENCES Item ON DELETE CASCADE,
-   FOREIGN KEY (PatchID) REFERENCES Patch(PatchID) ON DELETE CASCADE
 );
 
 
@@ -147,6 +146,47 @@ VALUES ('AL', 'Hope');
 INSERT INTO Esports_player3 (Team, StageName)
 VALUES ('BLG', 'ON');
 
+INSERT INTO Role (RoleName, Map_area)
+VALUES ('Top', 'Top Lane');
+INSERT INTO Role (RoleName, Map_area)
+VALUES ('Jungle', 'The Jungle');
+INSERT INTO Role (RoleName, Map_area)
+VALUES ('Mid', 'Mid Lane');
+INSERT INTO Role (RoleName, Map_area)
+VALUES ('ADC', 'Bot Lane');
+INSERT INTO Role (RoleName, Map_area)
+VALUES ('Support', 'Bot Lane');
+
+
+
+INSERT INTO Patch (PatchID, PatchDate)
+VALUES (25.14, '2025 - 07 - 15');
+INSERT INTO Patch (PatchID, PatchDate)
+VALUES (25.13, '2025 - 06 - 24');
+INSERT INTO Patch (PatchID, PatchDate)
+VALUES (25.12, '2025 - 06 - 10');
+INSERT INTO Patch (PatchID, PatchDate)
+VALUES (25.11, '2025 - 05 - 27');
+INSERT INTO Patch (PatchID, PatchDate)
+VALUES (25.10, '2025 - 05 - 13');
+
+
+INSERT INTO Item (Name, Effect)
+VALUES ('Infinity Edge', 'Massively enhances critical strikes.');
+INSERT INTO Item (Name, Effect)
+VALUES ('Luden''s Companion', 'Grants Ability Power, Mana, and 
+         burst damage.');
+INSERT INTO Item (Name, Effect)
+VALUES ('Heartsteel', 'Grants stacking Health and HP scaling
+         damage.');
+INSERT INTO Item (Name, Effect)
+VALUES ('Redemption', 'ACTIVE: Heals allies and damages
+         enemies in a circle.');
+INSERT INTO Item (Name, Effect)
+VALUES ('Zhonya''s Hourglass', 'ACTIVE: Become invincible for the duration but unable to take action.');
+INSERT INTO Item (Name, Effect)
+VALUES ('Eclipse', 'Grants Attack damage and a shield.');
+
 
 INSERT INTO Champions(ChampionName, Tier, Archetype, RoleName)
 VALUES ('Ambessa', 'OP',
@@ -182,6 +222,19 @@ VALUES ('Ambessa', 50.94,
            13.67, 5.88);
 
 
+
+INSERT INTO Build (ChampionName, SkillOrder, PatchID)
+VALUES ('Ambessa', 'QEW', 25.14);
+INSERT INTO Build (ChampionName, SkillOrder, PatchID)
+VALUES ('Alistar', 'QWE', 25.13);
+INSERT INTO Build (ChampionName, SkillOrder, PatchID)
+VALUES ('Ezreal', 'QEW', 25.12);
+INSERT INTO Build (ChampionName, SkillOrder, PatchID)
+VALUES ('Azir', 'WQE', 25.11);
+INSERT INTO Build (ChampionName, SkillOrder, PatchID)
+VALUES ('Pantheon', 'QWE', 25.10);
+
+
 INSERT INTO Matchup(ChampionName, Counter_Champion, PatchID, MatchupWinrate,
                     MatchesPlayed)
 VALUES ('Ambessa', 'Gwen', 25.14, 46.15, '39');
@@ -199,70 +252,21 @@ INSERT INTO Matchup(ChampionName, Counter_Champion, PatchID, MatchupWinrate,
 VALUES ('Alistar', 'Braum', 25.13, 39.39, '33');
 
 
-INSERT INTO Role (RoleName, Map_area)
-VALUES ('Top', 'Top Lane');
-INSERT INTO Role (RoleName, Map_area)
-VALUES ('Jungle', 'The Jungle');
-INSERT INTO Role (RoleName, Map_area)
-VALUES ('Mid', 'Mid Lane');
-INSERT INTO Role (RoleName, Map_area)
-VALUES ('ADC', 'Bot Lane');
-INSERT INTO Role (RoleName, Map_area)
-VALUES ('Support', 'Bot Lane');
 
 
-INSERT INTO Patch (PatchID, PatchDate)
-VALUES (25.14, '2025 - 07 - 15');
-INSERT INTO Patch (PatchID, PatchDate)
-VALUES (25.13, '2025 - 06 - 24');
-INSERT INTO Patch (PatchID, PatchDate)
-VALUES (25.13, '2025 - 06 - 10');
-INSERT INTO Patch (PatchID, PatchDate)
-VALUES (25.13, '2025 - 05 - 27');
-INSERT INTO Patch (PatchID, PatchDate)
-VALUES (25.13, '2025 - 05 - 13');
 
 
-INSERT INTO Item (Name, Effect)
-VALUES ('Infinity Edge', 'Massively enhances critical strikes.');
-INSERT INTO Item (Name, Effect)
-VALUES ('Luden''s Companion', 'Grants Ability Power, Mana, and 
-         burst damage.');
-INSERT INTO Item (Name, Effect)
-VALUES ('Heartsteel', 'Grants stacking Health and HP scaling
-         damage.');
-INSERT INTO Item (Name, Effect)
-VALUES ('Redemption', 'ACTIVE: Heals allies and damages
-         enemies in a circle.');
-INSERT INTO Item (Name, Effect)
-VALUES ('Zhonya''s Hourglass', 'ACTIVE: Become invincible for the duration but unable to take action.');
-INSERT INTO Item (Name, Effect)
-VALUES ('Eclipse', 'Grants Attack damage and a shield.');
-
-
-INSERT INTO Build (ChampionName, SkillOrder, PatchID)
-VALUES ('Ambessa', 'QEW', 25.14);
-INSERT INTO Build (ChampionName, SkillOrder, PatchID)
-VALUES ('Alistar', 'QWE', 25.13);
-INSERT INTO Build (ChampionName, SkillOrder, PatchID)
-VALUES ('Ezreal', 'QEW', 25.12);
-INSERT INTO Build (ChampionName, SkillOrder, PatchID)
-VALUES ('Azir', 'WQE', 25.11);
-INSERT INTO Build (ChampionName, SkillOrder, PatchID)
-VALUES ('Pantheon', 'QWE', 25.10);
-
-
-INSERT INTO BuildUsesItem (ChampionName, SkillOrder, PatchID, ItemName)
+INSERT INTO BuildUsesItem (ChampionName, SkillOrder, ItemName)
 VALUES ('Ambessa',
-           'QEW', 25.14, 'Heartsteel');
+           'QEW', 'Heartsteel');
 INSERT INTO BuildUsesItem (ChampionName, SkillOrder, PatchID, ItemName)
 VALUES ('Alistar',
-            'QWE', 25.13, 'Redemption');
+            'QWE', 'Redemption');
 INSERT INTO BuildUsesItem (ChampionName, SkillOrder, PatchID, ItemName)
 VALUES ('Ezreal',
-           'QEW', 25.12, 'Eclipse');
+           'QEW', 'Eclipse');
 INSERT INTO BuildUsesItem (ChampionName, SkillOrder, PatchID, ItemName)
 VALUES ('Azir',
-           'WQE', 25.11, 'Zhonya''s Hourglass');
+           'WQE', 'Zhonya''s Hourglass');
 INSERT INTO BuildUsesItem (ChampionName, SkillOrder, PatchID, ItemName)
-VALUES ('Pantheon', 'QWE', 25.10, 'Infinity Edge');
+VALUES ('Pantheon', 'QWE', 'Infinity Edge');
