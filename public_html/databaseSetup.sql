@@ -91,170 +91,170 @@ CREATE TABLE Matchup (
 
 
 
--- INSERT INTO branch VALUES (1, "ABC", "123 Charming Ave", "Vancouver", "6041234567");
--- INSERT INTO branch VALUES (2, "DEF", "123 Coco Ave", "Vancouver", "6044567890");
+-- INSERT INTO branch VALUES (1, 'ABC', '123 Charming Ave', 'Vancouver', '6041234567');
+-- INSERT INTO branch VALUES (2, 'DEF', '123 Coco Ave', 'Vancouver', '6044567890');
 
 INSERT INTO Amateur_player (UID, Rank, Preferred_role)
-VALUES (101, "Bronze", "Mid");
+VALUES (101, 'Bronze', 'Mid');
 INSERT INTO Amateur_player (UID, Rank, Preferred_role)
-VALUES (102, "Silver", "Top");
+VALUES (102, 'Silver', 'Top');
 INSERT INTO Amateur_player (UID, Rank, Preferred_role)
-VALUES (103, "Gold", "Support");
+VALUES (103, 'Gold', 'Support');
 INSERT INTO Amateur_player (UID, Rank, Preferred_role)
-VALUES (104, "Platinum", "Jungle");
+VALUES (104, 'Platinum', 'Jungle');
 INSERT INTO Amateur_player (UID, Rank, Preferred_role)
-VALUES (105, "Diamond", "ADC");
+VALUES (105, 'Diamond', 'ADC');
 
 
 INSERT INTO Esports_player1 (UID, Rank, Team)
-VALUES (201, "Challenger", "GenG");
+VALUES (201, 'Challenger', 'GenG');
 INSERT INTO Esports_player1 (UID, Rank, Team)
-VALUES (202, "Challenger", "T1");
+VALUES (202, 'Challenger', 'T1');
 INSERT INTO Esports_player1 (UID, Rank, Team)
-VALUES (203, "Challenger", "HLE");
+VALUES (203, 'Challenger', 'HLE');
 INSERT INTO Esports_player1 (UID, Rank, Team)
-VALUES (204, "Challenger", "AL");
+VALUES (204, 'Challenger', 'AL');
 INSERT INTO Esports_player1 (UID, Rank, Team)
-VALUES (205, "Challenger", "BLG");
+VALUES (205, 'Challenger', 'BLG');
 
 
 INSERT INTO Esports_player2 (Team, Position)
-VALUES ("GenG", "Top");
+VALUES ('GenG', 'Top');
 INSERT INTO Esports_player2 (Team, Position)
-VALUES ("T1", "Jungle");
+VALUES ('T1', 'Jungle');
 INSERT INTO Esports_player2 (Team, Position)
-VALUES ("HLE", "Mid");
+VALUES ('HLE', 'Mid');
 INSERT INTO Esports_player2 (Team, Position)
-VALUES ("AL", "ADC");
+VALUES ('AL', 'ADC');
 INSERT INTO Esports_player2 (Team, Position)
-VALUES ("BLG", "Support");
+VALUES ('BLG', 'Support');
 INSERT INTO Esports_player3 (Team, StageName)
-VALUES ("GenG", "Kiin");
+VALUES ('GenG', 'Kiin');
 INSERT INTO Esports_player3 (Team, StageName)
-VALUES ("T1", "Oner");
+VALUES ('T1', 'Oner');
 INSERT INTO Esports_player3 (Team, StageName)
-VALUES ("HLE", "Zeka");
+VALUES ('HLE', 'Zeka');
 INSERT INTO Esports_player3 (Team, StageName)
-VALUES ("AL", "Hope");
+VALUES ('AL', 'Hope');
 INSERT INTO Esports_player3 (Team, StageName)
-VALUES ("BLG", "ON");
+VALUES ('BLG', 'ON');
 
 
 INSERT INTO Champions(ChampionName, Tier, Archetype, RoleName)
-VALUES ("Ambessa", "OP",
-           "Fighter", "Top");
+VALUES ('Ambessa', 'OP',
+           'Fighter', 'Top');
 INSERT INTO Champions(ChampionName, Tier, Archetype, RoleName)
-VALUES ("Pantheon", "1",
-           "Fighter", "Jungle");
+VALUES ('Pantheon', '1',
+           'Fighter', 'Jungle');
 INSERT INTO Champions(ChampionName, Tier, Archetype, RoleName)
-VALUES ("Azir", "1", "Mage",
-           "Mid");
+VALUES ('Azir', '1', 'Mage',
+           'Mid');
 INSERT INTO Champions(ChampionName, Tier, Archetype, RoleName)
-VALUES ("Ezreal", "2",
-           "Marksman", "ADC");
+VALUES ('Ezreal', '2',
+           'Marksman', 'ADC');
 INSERT INTO Champions(ChampionName, Tier, Archetype, RoleName)
-VALUES ("Alistar", "OP",
-           "Tank", "Support");
+VALUES ('Alistar', 'OP',
+           'Tank', 'Support');
 
 
 INSERT INTO Stats(ChampionName, Winrate, Pickrate, Banrate)
-VALUES ("Alistar", "54.69 %",
-           "19.55 %", "4.20 %");
+VALUES ('Alistar', '54.69',
+           '19.55', '4.20');
 INSERT INTO Stats(ChampionName, Winrate, Pickrate, Banrate)
-VALUES ("Ezreal", "47.14 %",
-           "11.72 %", "2.50 %");
+VALUES ('Ezreal', '47.14',
+           '11.72', '2.50');
 INSERT INTO Stats(ChampionName, Winrate, Pickrate, Banrate)
-VALUES ("Azir", "52.23 %",
-           "10.44 %", "2.38 %");
+VALUES ('Azir', '52.23',
+           '10.44', '2.38 %');
 INSERT INTO Stats(ChampionName, Winrate, Pickrate, Banrate)
-VALUES ("Pantheon", "52.04 %",
-           "16.51 %", "19.58 %");
+VALUES ('Pantheon', '52.04',
+           '16.51', '19.58');
 INSERT INTO Stats(ChampionName, Winrate, Pickrate, Banrate)
-VALUES ("Ambessa", "50.94 %",
-           "13.67 %", "5.88 %");
+VALUES ('Ambessa', '50.94',
+           '13.67', '5.88');
 
 
 INSERT INTO Matchup(ChampionName, Counter_Champion, PatchID, MatchupWinrate,
                     MatchesPlayed)
-VALUES ("Ambessa", "Gwen", "46.15 %", "39");
+VALUES ('Ambessa', 'Gwen', '46.15', '39');
 INSERT INTO Matchup(ChampionName, Counter_Champion, PatchID, MatchupWinrate,
                     MatchesPlayed)
-VALUES ("Pantheon", "Trundle", "51.35 %", "37");
+VALUES ('Pantheon', 'Trundle', '51.35', '37');
 INSERT INTO Matchup(ChampionName, Counter_Champion, PatchID, MatchupWinrate,
                     MatchesPlayed)
-VALUES ("Azir", "Taliyah", "42.55 %", "47");
+VALUES ('Azir', 'Taliyah', '42.55', '47');
 INSERT INTO Matchup(ChampionName, Counter_Champion, PatchID, MatchupWinrate,
                     MatchesPlayed)
-VALUES ("Kai'Sa", "Lucian", "43.33%", "30");
+VALUES ('Kai''Sa', 'Lucian', '43.33', '30');
 INSERT INTO Matchup(ChampionName, Counter_Champion, PatchID, MatchupWinrate,
                     MatchesPlayed)
-VALUES ("Alistar", "Braum", "39.39 %", "33");
+VALUES ('Alistar', 'Braum', '39.39', '33');
 
 
 INSERT INTO Role (RoleName, Map_area)
-VALUES ("Top", "Top Lane");
+VALUES ('Top', 'Top Lane');
 INSERT INTO Role (RoleName, Map_area)
-VALUES ("Jungle", "The Jungle");
+VALUES ('Jungle', 'The Jungle');
 INSERT INTO Role (RoleName, Map_area)
-VALUES ("Mid", "Mid Lane");
+VALUES ('Mid', 'Mid Lane');
 INSERT INTO Role (RoleName, Map_area)
-VALUES ("ADC", "Bot Lane");
+VALUES ('ADC', 'Bot Lane');
 INSERT INTO Role (RoleName, Map_area)
-VALUES ("Support", "Bot Lane");
+VALUES ('Support', 'Bot Lane');
 
 
 INSERT INTO Patch (PatchID, date)
-VALUES ("25.14", "2025 - 07 - 15");
+VALUES ('25.14', '2025 - 07 - 15');
 INSERT INTO Patch (PatchID, date)
-VALUES ("25.13", "2025 - 06 - 24");
+VALUES ('25.13', '2025 - 06 - 24');
 INSERT INTO Patch (PatchID, date)
-VALUES ("25.12", "2025 - 06 - 10");
+VALUES ('25.12', '2025 - 06 - 10');
 INSERT INTO Patch (PatchID, date)
-VALUES ("25.11", "2025 - 05 - 27");
+VALUES ('25.11', '2025 - 05 - 27');
 INSERT INTO Patch (PatchID, date)
-VALUES ("25.10", "2025 - 05 - 13");
+VALUES ('25.10', '2025 - 05 - 13');
 
 
 INSERT INTO Item (Name, Effect)
-VALUES ("Infinity Edge", "Massively enhances critical strikes.");
+VALUES ('Infinity Edge', 'Massively enhances critical strikes.');
 INSERT INTO Item (Name, Effect)
-VALUES ("Luden's Companion", "Grants Ability Power, Mana, and 
-         burst damage.");
+VALUES ('Luden''s Companion', 'Grants Ability Power, Mana, and 
+         burst damage.');
 INSERT INTO Item (Name, Effect)
-VALUES ("Heartsteel", "Grants stacking Health and HP scaling
-         damage.");
+VALUES ('Heartsteel', 'Grants stacking Health and HP scaling
+         damage.');
 INSERT INTO Item (Name, Effect)
-VALUES ("Redemption", "ACTIVE: Heals allies and damages
-         enemies in a circle.");
+VALUES ('Redemption', 'ACTIVE: Heals allies and damages
+         enemies in a circle.');
 INSERT INTO Item (Name, Effect)
-VALUES ("Zhonya's Hourglass", "ACTIVE: Become invincible for the duration but unable to take action.");
+VALUES ('Zhonya''s Hourglass', 'ACTIVE: Become invincible for the duration but unable to take action.');
 INSERT INTO Item (Name, Effect)
-VALUES ("Eclipse", "Grants Attack damage and a shield.");
+VALUES ('Eclipse', 'Grants Attack damage and a shield.');
 
 
 INSERT INTO Build (ChampionName, SkillOrder, PatchID)
-VALUES ("Ambessa", "QEW", "15.14");
+VALUES ('Ambessa', 'QEW', '15.14');
 INSERT INTO Build (ChampionName, SkillOrder, PatchID)
-VALUES ("Alistar", "QWE", "15.13");
+VALUES ('Alistar', 'QWE', '15.13');
 INSERT INTO Build (ChampionName, SkillOrder, PatchID)
-VALUES ("Ezreal", "QEW", "15.12");
+VALUES ('Ezreal', 'QEW', '15.12');
 INSERT INTO Build (ChampionName, SkillOrder, PatchID)
-VALUES ("Azir", "WQE", "15.11");
+VALUES ('Azir', 'WQE', '15.11');
 INSERT INTO Build (ChampionName, SkillOrder, PatchID)
-VALUES ("Pantheon", "QWE", "15.10");
+VALUES ('Pantheon', 'QWE', '15.10');
 
 
 INSERT INTO BuildUsesItem (ChampionName, SkillOrder, PatchID, ItemName)
-VALUES ("Ambessa",
-           "QEW", "15.14", "Heartsteel");
+VALUES ('Ambessa',
+           'QEW', '15.14', 'Heartsteel');
 INSERT INTO BuildUsesItem (ChampionName, SkillOrder, PatchID, ItemName)
-VALUES ("Alistar",
-            "QWE", "15.13", "Redemption");
+VALUES ('Alistar',
+            'QWE', '15.13', 'Redemption');
 INSERT INTO BuildUsesItem (ChampionName, SkillOrder, PatchID, ItemName)
-VALUES ("Ezreal",
-           "QEW", "15.12", "Eclipse");
+VALUES ('Ezreal',
+           'QEW', '15.12', 'Eclipse');
 INSERT INTO BuildUsesItem (ChampionName, SkillOrder, PatchID, ItemName)
-VALUES ("Azir",
-           "WQE", "15.11", "Zhonya's Hourglass");
+VALUES ('Azir',
+           'WQE', '15.11', 'Zhonya''s Hourglass');
 INSERT INTO BuildUsesItem (ChampionName, SkillOrder, PatchID, ItemName)
-VALUES ("Pantheon", "QWE", "15.10", "Infinity Edge");
+VALUES ('Pantheon', 'QWE', '15.10', 'Infinity Edge');
