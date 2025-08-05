@@ -1,10 +1,15 @@
--- CREATE TABLE branch ( 
--- 	branch_id integer not null PRIMARY KEY,
--- 	branch_name varchar2(20) not null,
--- 	branch_addr varchar2(50),
--- 	branch_city varchar2(20) not null,
--- 	branch_phone integer 
--- );
+DROP TABLE BuildUsesItem;
+DROP TABLE Matchup;
+DROP TABLE Build;
+DROP TABLE Stats;
+DROP TABLE Champions;
+DROP TABLE Item;
+DROP TABLE Patch;
+DROP TABLE Role;
+DROP TABLE Esports_player1;
+DROP TABLE Esports_player2;
+DROP TABLE Esports_player3;
+DROP TABLE Amateur_player;
 
 CREATE TABLE Amateur_player (
     UID INTEGER PRIMARY KEY,
@@ -28,6 +33,21 @@ CREATE TABLE Esports_player3 (
    StageName VARCHAR(20)
 );
 
+CREATE TABLE Role (
+   RoleName VARCHAR(20) PRIMARY KEY,
+   Map_area VARCHAR(10)
+);
+
+CREATE TABLE Patch (
+   PatchID DECIMAL(4,2) PRIMARY KEY,
+   date VARCHAR(10)
+);
+
+CREATE TABLE Item (
+   Name VARCHAR(50) PRIMARY KEY,
+   Effect VARCHAR(200)
+);
+
 CREATE TABLE Champions (
    ChampionName VARCHAR(30) PRIMARY KEY,
    Archetype VARCHAR(30),
@@ -45,21 +65,6 @@ CREATE TABLE Stats (
    FOREIGN KEY (ChampionName) REFERENCES Champions ON DELETE CASCADE
 );
 
-CREATE TABLE Role (
-   RoleName VARCHAR(20) PRIMARY KEY,
-   Map_area VARCHAR(10)
-);
-
-CREATE TABLE Patch (
-   PatchID DECIMAL(4,2) PRIMARY KEY,
-   date VARCHAR(10)
-);
-
-CREATE TABLE Item (
-   Name VARCHAR(50) PRIMARY KEY,
-   Effect VARCHAR(200)
-);
-
 CREATE TABLE Build (
    ChampionName VARCHAR(50),
    SkillOrder CHAR(3),
@@ -67,15 +72,6 @@ CREATE TABLE Build (
    PRIMARY KEY (ChampionName, SkillOrder),
    FOREIGN KEY (ChampionName) REFERENCES Champions ON DELETE CASCADE,
    FOREIGN KEY (PatchID) REFERENCES Patch ON DELETE CASCADE
-);
-
-CREATE TABLE BuildUsesItem (
-   ChampionName VARCHAR(50),
-   SkillOrder VARCHAR(20),
-   ItemName VARCHAR(50),
-   PRIMARY KEY (ChampionName, SkillOrder, ItemName),
-   FOREIGN KEY (ChampionName, SkillOrder) REFERENCES Build ON DELETE CASCADE,
-   FOREIGN KEY (ItemName) REFERENCES Item ON DELETE CASCADE
 );
 
 CREATE TABLE Matchup (
@@ -88,6 +84,18 @@ CREATE TABLE Matchup (
    FOREIGN KEY (ChampionName) REFERENCES Champions ON DELETE CASCADE,
    FOREIGN KEY (PatchID) REFERENCES Patch ON DELETE CASCADE
 );
+
+CREATE TABLE BuildUsesItem (
+   ChampionName VARCHAR(50),
+   SkillOrder VARCHAR(20),
+   ItemName VARCHAR(50),
+   PatchID DECIMAL(4,2) NOT NULLL,
+   PRIMARY KEY (ChampionName, SkillOrder, ItemName),
+   FOREIGN KEY (ChampionName, SkillOrder) REFERENCES Build ON DELETE CASCADE,
+   FOREIGN KEY (ItemName) REFERENCES Item ON DELETE CASCADE
+   FOREIGN KEY (PatchID) REFERENCES Patch(PatchID) ON DELETE CASCADE
+);
+
 
 
 
@@ -176,19 +184,19 @@ VALUES ('Ambessa', '50.94',
 
 INSERT INTO Matchup(ChampionName, Counter_Champion, PatchID, MatchupWinrate,
                     MatchesPlayed)
-VALUES ('Ambessa', 'Gwen', '46.15', '39');
+VALUES ('Ambessa', 'Gwen', 25.14, '46.15', '39');
 INSERT INTO Matchup(ChampionName, Counter_Champion, PatchID, MatchupWinrate,
                     MatchesPlayed)
-VALUES ('Pantheon', 'Trundle', '51.35', '37');
+VALUES ('Pantheon', 'Trundle', 25.14, '51.35', '37');
 INSERT INTO Matchup(ChampionName, Counter_Champion, PatchID, MatchupWinrate,
                     MatchesPlayed)
-VALUES ('Azir', 'Taliyah', '42.55', '47');
+VALUES ('Azir', 'Taliyah', 25.14, '42.55', '47');
 INSERT INTO Matchup(ChampionName, Counter_Champion, PatchID, MatchupWinrate,
                     MatchesPlayed)
-VALUES ('Kai''Sa', 'Lucian', '43.33', '30');
+VALUES ('Kai''Sa', 'Lucian', 25.13, '43.33', '30');
 INSERT INTO Matchup(ChampionName, Counter_Champion, PatchID, MatchupWinrate,
                     MatchesPlayed)
-VALUES ('Alistar', 'Braum', '39.39', '33');
+VALUES ('Alistar', 'Braum', 25.13, '39.39', '33');
 
 
 INSERT INTO Role (RoleName, Map_area)
@@ -204,15 +212,15 @@ VALUES ('Support', 'Bot Lane');
 
 
 INSERT INTO Patch (PatchID, date)
-VALUES ('25.14', '2025 - 07 - 15');
+VALUES (25.14, '2025 - 07 - 15');
 INSERT INTO Patch (PatchID, date)
-VALUES ('25.13', '2025 - 06 - 24');
+VALUES (25.13, '2025 - 06 - 24');
 INSERT INTO Patch (PatchID, date)
-VALUES ('25.12', '2025 - 06 - 10');
+VALUES (25.13, '2025 - 06 - 10');
 INSERT INTO Patch (PatchID, date)
-VALUES ('25.11', '2025 - 05 - 27');
+VALUES (25.13, '2025 - 05 - 27');
 INSERT INTO Patch (PatchID, date)
-VALUES ('25.10', '2025 - 05 - 13');
+VALUES (25.13, '2025 - 05 - 13');
 
 
 INSERT INTO Item (Name, Effect)
@@ -233,28 +241,28 @@ VALUES ('Eclipse', 'Grants Attack damage and a shield.');
 
 
 INSERT INTO Build (ChampionName, SkillOrder, PatchID)
-VALUES ('Ambessa', 'QEW', '15.14');
+VALUES ('Ambessa', 'QEW', 25.14);
 INSERT INTO Build (ChampionName, SkillOrder, PatchID)
-VALUES ('Alistar', 'QWE', '15.13');
+VALUES ('Alistar', 'QWE', 25.13);
 INSERT INTO Build (ChampionName, SkillOrder, PatchID)
-VALUES ('Ezreal', 'QEW', '15.12');
+VALUES ('Ezreal', 'QEW', 25.12);
 INSERT INTO Build (ChampionName, SkillOrder, PatchID)
-VALUES ('Azir', 'WQE', '15.11');
+VALUES ('Azir', 'WQE', 25.11);
 INSERT INTO Build (ChampionName, SkillOrder, PatchID)
-VALUES ('Pantheon', 'QWE', '15.10');
+VALUES ('Pantheon', 'QWE', 25.10);
 
 
 INSERT INTO BuildUsesItem (ChampionName, SkillOrder, PatchID, ItemName)
 VALUES ('Ambessa',
-           'QEW', '15.14', 'Heartsteel');
+           'QEW', 25.14, 'Heartsteel');
 INSERT INTO BuildUsesItem (ChampionName, SkillOrder, PatchID, ItemName)
 VALUES ('Alistar',
-            'QWE', '15.13', 'Redemption');
+            'QWE', 25.13, 'Redemption');
 INSERT INTO BuildUsesItem (ChampionName, SkillOrder, PatchID, ItemName)
 VALUES ('Ezreal',
-           'QEW', '15.12', 'Eclipse');
+           'QEW', 25.12, 'Eclipse');
 INSERT INTO BuildUsesItem (ChampionName, SkillOrder, PatchID, ItemName)
 VALUES ('Azir',
-           'WQE', '15.11', 'Zhonya''s Hourglass');
+           'WQE', 25.11, 'Zhonya''s Hourglass');
 INSERT INTO BuildUsesItem (ChampionName, SkillOrder, PatchID, ItemName)
-VALUES ('Pantheon', 'QWE', '15.10', 'Infinity Edge');
+VALUES ('Pantheon', 'QWE', 25.10, 'Infinity Edge');
