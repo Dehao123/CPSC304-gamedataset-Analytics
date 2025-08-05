@@ -89,10 +89,10 @@ CREATE TABLE BuildUsesItem (
    ChampionName VARCHAR(50),
    SkillOrder VARCHAR(20),
    ItemName VARCHAR(50),
-   PatchID DECIMAL(4,2) NOT NULLL,
+   PatchID DECIMAL(4,2) NOT NULL,
    PRIMARY KEY (ChampionName, SkillOrder, ItemName),
    FOREIGN KEY (ChampionName, SkillOrder) REFERENCES Build ON DELETE CASCADE,
-   FOREIGN KEY (ItemName) REFERENCES Item ON DELETE CASCADE
+   FOREIGN KEY (ItemName) REFERENCES Item ON DELETE CASCADE,
    FOREIGN KEY (PatchID) REFERENCES Patch(PatchID) ON DELETE CASCADE
 );
 
