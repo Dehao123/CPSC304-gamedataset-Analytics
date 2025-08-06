@@ -1,4 +1,4 @@
-<!-- Test Oracle file for UBC CPSC304
+<!-- Test Oracle file for UBC CPSC304 - MODIFIED by Nathan Jiang and Dehao Huang for CPSC 304 project as base.
   Created by Jiemin Zhang
   Modified by Simona Radu
   Modified by Jessica Wong (2018-06-22)
@@ -44,12 +44,13 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
 <html>
 
 <head>
-	<title>CPSC 304 PHP/Oracle Demonstration</title>
+	<title>CPSC 304 Project</title>
 </head>
 
 <body>
+	<h1>CPSC 304 Project</h1>
 	<h2>Reset</h2>
-	<p>If you wish to reset the table press on the reset button. If this is the first time you're running this page, you MUST use reset</p>
+	<p>Click to run database setup file when first running this page. Resets tables to as specified in SQL file.</p>
 
 	<form method="POST" action="oracle-test.php">
 		<!-- "action" specifies the file or page that will receive the form data for processing. As with this example, it can be this same file. -->
@@ -62,15 +63,18 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
 	<h2>Insert Values into DemoTable</h2>
 	<form method="POST" action="oracle-test.php">
 		<input type="hidden" id="insertQueryRequest" name="insertQueryRequest">
-		Number: <input type="text" name="insNo"> <br /><br />
-		Name: <input type="text" name="insName"> <br /><br />
+		ChampName: <input type="text" name="ChampName"> <br /><br />
+		counterChamp: <input type="text" name="counterChamp"> <br /><br />
+		patchID: <input type="text" name="patchID"> <br /><br />
+		winrate: <input type="text" name="winrate"> <br /><br />
+		matches: <input type="text" name="matches"> <br /><br />
 
 		<input type="submit" value="Insert" name="insertSubmit"></p>
 	</form>
 
 	<hr />
 
-	<h2>Update Tier in DemoTable</h2>
+	<h2>Update Tier in Champion</h2>
 	<p>The values are case sensitive and if you enter in the wrong case, the update statement will not do anything.</p>
 
 	<form method="POST" action="oracle-test.php">
@@ -268,14 +272,14 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
 		global $db_conn, $success;
 
 		$tuple = array(
-			":bind1" => $_POST['champName'],
-			":bind2" => $_POST['counterChamp'],
-			":bind3" => $_POST['patchID'],
-			":bind4" => $_POST['winrate'],
-			":bind5" => $_POST['matches'],
+			":champName" => $_POST['champName'],
+			":counterChamp" => $_POST['counterChamp'],
+			":patchID" => $_POST['patchID'],
+			":winrate" => $_POST['winrate'],
+			":matches" => $_POST['matches'],
 		);
 
-		executeBoundSQL("INSERT INTO Matchup (ChampName, counterChamp, patchID, winrate, matches) values (:bind1, :bind2, :bind3, :bind4, :bind5)");
+		executeBoundSQL("INSERT INTO Matchup (ChampName, counterChamp, patchID, winrate, matches) values (:champName, :counterChamp, :patchID, :winrate, :matches)");
 		if ($success) {
 			oci_commit($db_conn);
 			echo "<p>Matchup INSERTED successfully!</p>";
@@ -290,10 +294,10 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
         global $db_conn, $success;
     
         $tuple = array(
-			":bind1" => $_POST['roleNameDelete']
+			":roleName" => $_POST['roleNameDelete']
 		);
 
-        executeBoundSQL("DELETE FROM Role WHERE RoleName = :bind1");
+        executeBoundSQL("DELETE FROM Role WHERE RoleName = :roleName");
         if ($success) {
 			oci_commit($db_conn);
 			echo "<p>Role DELETED successfully!</p>";
@@ -308,9 +312,9 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
         global $db_conn;
 
         $result = executePlainSQL(
-            "SELECT Champions.ChampionName, Stats.Winrate, Stats.Pickrate, Stats.Banrate " .
-            "FROM Champions, Stats " .
-            "WHERE Champions.ChampionName = Stats.ChampionName");
+            "SELECT Champions.ChampionName, Stats.Winrate, Stats.Pickrate, Stats.Banrate  
+             FROM Champions, Stats 
+             WHERE Champions.ChampionName = Stats.ChampionName;");
 
         printResult($result);   
     }
