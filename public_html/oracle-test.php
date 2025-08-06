@@ -81,6 +81,15 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
 		<input type="submit" value="Update" name="updateSubmit"></p>
 	</form>
 
+    <hr />
+
+    <h2>Delete Champion by their ChampionName in DemoTable</h2>
+    <form method="POST" action="oracle-test.php">
+        <input type="hidden" id="deleteQueryRequest" name="deleteQueryRequest">
+        ChampionName: <input type="text" name="championName"> <br /><br />
+        <input type="submit" value="Delete" name="deleteSubmit"></p>
+    </form> 
+
 	<hr />
 
 	<h2>Count the Tuples in DemoTable</h2>
@@ -271,6 +280,16 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
 		executeBoundSQL("insert into demoTable values (:bind1, :bind2)", $alltuples);
 		oci_commit($db_conn);
 	}
+
+    // Delete Champion by their ChampionName
+    function handleDeleteRequest()
+    {
+        global $db_conn;
+    
+        $champion_name = $_POST['championName'];
+        executePlainSQL("DELETE FROM demoTable WHERE ='" . $champion_name . "'");
+        oci_commit($db_conn);
+    }
 
 	function handleCountRequest()
 	{
