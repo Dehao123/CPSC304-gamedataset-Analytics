@@ -83,7 +83,7 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
 
     <hr />
 
-    <h2>Delete Champion by their ChampionName in DemoTable</h2>
+    <h2>Delete Champion by their ChampionName in Champions</h2>
     <form method="POST" action="oracle-test.php">
         <input type="hidden" id="deleteQueryRequest" name="deleteQueryRequest">
         ChampionName: <input type="text" name="championName"> <br /><br />
@@ -236,7 +236,7 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
 		$old_tier = $_POST['oldTier'];
 		$new_tier = $_POST['newTier']; 
 
-        executePlainSQL("UPDATE demoTable SET tier='" . $new_tier . "' WHERE tier='" . $old_tier . "'");
+        executePlainSQL("UPDATE Champions SET Tier='" . $new_tier . "' WHERE Tier='" . $old_tier . "'");
         
 		oci_commit($db_conn);
 	}
@@ -287,8 +287,21 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
         global $db_conn;
     
         $champion_name = $_POST['championName'];
-        executePlainSQL("DELETE FROM demoTable WHERE ='" . $champion_name . "'");
+        executePlainSQL("DELETE FROM Champions WHERE ChampionName='" . $champion_name . "'");
         oci_commit($db_conn);
+    }
+
+    // Join Champions and Stats
+    function handleJoinRequest()
+    {
+        global $db_conn;
+
+        $result = executePlainSQL(
+            "SELECT Champions.ChampionName, Stats.Winrate, Stats.Pickrate, Stats.Banrate " .
+            "FROM Champions, Stats " .
+            "WHERE Champions.ChampionName = Stats.ChampionName");
+
+        printResult($result);   
     }
 
 	function handleCountRequest()
@@ -320,8 +333,9 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
 				handleUpdateRequest();
 			} else if (array_key_exists('insertQueryRequest', $_POST)) {
 				handleInsertRequest();
-			}
-
+            } else if (array_key_exists('deleteQueryRequest', $_POST)) {
+                handleDeleteRequest();
+            }
 			disconnectFromDB();
 		}
 	}
@@ -335,15 +349,19 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
 				handleCountRequest();
 			} elseif (array_key_exists('displayTuples', $_GET)) {
 				handleDisplayRequest();
-			}
+			} elseif (array_key_exists('joinTablesRequest', $_GET)) {
+				handleJoinRequest();
+			} else if (array_key_exists('joinTablesRequest', $_GET)) {
+				handleJoinRequest();
+			}   
 
 			disconnectFromDB();
 		}
 	}
 
-	if (isset($_POST['reset']) || isset($_POST['updateSubmit']) || isset($_POST['insertSubmit'])) {
+	if (isset($_POST['reset']) || isset($_POST['updateSubmit']) || isset($_POST['insertSubmit']) || isset($_POST['deleteSubmit'])) {
 		handlePOSTRequest();
-	} else if (isset($_GET['countTupleRequest']) || isset($_GET['displayTuplesRequest'])) {
+	} else if (isset($_GET['countTupleRequest']) || isset($_GET['displayTuplesRequest']) || isset($_GET['joinTablesRequest'])) {
 		handleGETRequest();
 	}
 
