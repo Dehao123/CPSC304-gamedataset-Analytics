@@ -256,29 +256,33 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
     	}
 
 		if ($success) {
-			echo "<br> Reset Successful! <br>";
+			echo "<p> Reset Successful! </p>";
 		} else {
-			echo "<br> Reset Failed. check errors <br>";
+			echo "<p> Reset Failed. check errors </p>";
 		}
 
 	}
 
 	function handleInsertRequest()
 	{
-		global $db_conn;
+		global $db_conn, $success;
 
 		//Getting the values from user and insert data into the table
 		$tuple = array(
-			":bind1" => $_POST['insNo'],
-			":bind2" => $_POST['insName']
+			":bind1" => $_POST['champName'],
+			":bind2" => $_POST['counterChamp'],
+			":bind3" => $_POST['patchID'],
+			":bind4" => $_POST['winrate'],
+			":bind5" => $_POST['matches'],
 		);
 
-		$alltuples = array(
-			$tuple
-		);
-
-		executeBoundSQL("insert into demoTable values (:bind1, :bind2)", $alltuples);
-		oci_commit($db_conn);
+		executeBoundSQL("INSERT INTO Matchup (ChampName, counterChamp, patchID, winrate, matches) values (:bind1, :bind2, :bind3, :bind4, :bind5)");
+		if ($success) {
+			oci_commit($db_conn);
+			echo "<p>Matchup INSERTED successfully!</p>";
+		} else {
+			echo "<p>Insert failed. Check name and ID exists.</p>";
+		}
 	}
 
     // Delete Champion by their ChampionName
