@@ -40,7 +40,7 @@ CREATE TABLE Role (
 
 CREATE TABLE Patch (
    PatchID DECIMAL(4,2) PRIMARY KEY,
-   PatchDate VARCHAR(10)
+   PatchDate VARCHAR(20)
 );
 
 CREATE TABLE Item (
@@ -87,19 +87,13 @@ CREATE TABLE Matchup (
 
 CREATE TABLE BuildUsesItem (
    ChampionName VARCHAR(50),
-   SkillOrder VARCHAR(20),
+   SkillOrder CHAR(3),
    ItemName VARCHAR(50),
-   PatchID DECIMAL(4,2) NOT NULL,
    PRIMARY KEY (ChampionName, SkillOrder, ItemName),
    FOREIGN KEY (ChampionName, SkillOrder) REFERENCES Build ON DELETE CASCADE,
-   FOREIGN KEY (ItemName) REFERENCES Item ON DELETE CASCADE,
+   FOREIGN KEY (ItemName) REFERENCES Item ON DELETE CASCADE
 );
 
-
-
-
--- INSERT INTO branch VALUES (1, 'ABC', '123 Charming Ave', 'Vancouver', '6041234567');
--- INSERT INTO branch VALUES (2, 'DEF', '123 Coco Ave', 'Vancouver', '6044567890');
 
 INSERT INTO Amateur_player (UserID, Rank, Preferred_role)
 VALUES (101, 'Bronze', 'Mid');
@@ -203,6 +197,9 @@ VALUES ('Ezreal', '2',
 INSERT INTO Champions(ChampionName, Tier, Archetype, RoleName)
 VALUES ('Alistar', 'OP',
            'Tank', 'Support');
+INSERT INTO Champions(ChampionName, Tier, Archetype, RoleName)
+VALUES ('Kai''Sa', '1', 
+           'Marksman', 'ADC');
 
 
 INSERT INTO Stats(ChampionName, Winrate, Pickrate, Banrate)
