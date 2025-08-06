@@ -267,7 +267,6 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
 	{
 		global $db_conn, $success;
 
-		//Getting the values from user and insert data into the table
 		$tuple = array(
 			":bind1" => $_POST['champName'],
 			":bind2" => $_POST['counterChamp'],
@@ -288,11 +287,19 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
     // Delete Champion by their ChampionName
     function handleDeleteRequest()
     {
-        global $db_conn;
+        global $db_conn, $success;
     
-        $champion_name = $_POST['championName'];
-        executePlainSQL("DELETE FROM Champions WHERE ChampionName='" . $champion_name . "'");
-        oci_commit($db_conn);
+        $tuple = array(
+			":bind1" => $_POST['roleNameDelete']
+		);
+
+        executeBoundSQL("DELETE FROM Role WHERE RoleName = :bind1");
+        if ($success) {
+			oci_commit($db_conn);
+			echo "<p>Role DELETED successfully!</p>";
+		} else {
+			echo "<p>DELETE failed. Check rolename.</p>";
+		}
     }
 
     // Join Champions and Stats
