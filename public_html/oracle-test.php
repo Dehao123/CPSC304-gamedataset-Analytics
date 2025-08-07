@@ -74,7 +74,7 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
 
 	<hr />
 
-	<h2>Update Tier in Champion</h2>
+	<!-- <h2>Update Tier in Champion</h2>
 	<p>The values are case sensitive and if you enter in the wrong case, the update statement will not do anything.</p>
 
 	<form method="POST" action="oracle-test.php">
@@ -83,7 +83,7 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
 		New Tier: <input type="text" name="newTier"> <br /><br />
 
 		<input type="submit" value="Update" name="updateSubmit"></p>
-	</form>
+	</form> -->
 
     <hr />
 
@@ -227,23 +227,23 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
 		oci_close($db_conn);
 	}
 
-	function handleUpdateRequest()
-	{
-		global $db_conn;
+	// function handleUpdateRequest()
+	// {
+	// 	global $db_conn;
 
-		// $old_name = $_POST['oldName'];
-		// $new_name = $_POST['newName'];
+	// 	// $old_name = $_POST['oldName'];
+	// 	// $new_name = $_POST['newName'];
 
-		// you need the wrap the old name and new name values with single quotations
-		// executePlainSQL("UPDATE demoTable SET name='" . $new_name . "' WHERE name='" . $old_name . "'");
+	// 	// you need the wrap the old name and new name values with single quotations
+	// 	// executePlainSQL("UPDATE demoTable SET name='" . $new_name . "' WHERE name='" . $old_name . "'");
 
-		$old_tier = $_POST['oldTier'];
-		$new_tier = $_POST['newTier']; 
+	// 	$old_tier = $_POST['oldTier'];
+	// 	$new_tier = $_POST['newTier']; 
 
-        executePlainSQL("UPDATE Champions SET Tier='" . $new_tier . "' WHERE Tier='" . $old_tier . "'");
+    //     executePlainSQL("UPDATE Champions SET Tier='" . $new_tier . "' WHERE Tier='" . $old_tier . "'");
         
-		oci_commit($db_conn);
-	}
+	// 	oci_commit($db_conn);
+	// }
 
 	function handleResetRequest()
 	{
