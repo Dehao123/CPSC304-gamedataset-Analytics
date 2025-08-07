@@ -223,6 +223,15 @@ VALUES ('Ambessa', 50.94,
 INSERT INTO Build (ChampionName, SkillOrder, PatchID)
 VALUES ('Ambessa', 'QEW', 25.14);
 INSERT INTO Build (ChampionName, SkillOrder, PatchID)
+VALUES ('Ambessa', 'QEW', 25.13);
+INSERT INTO Build (ChampionName, SkillOrder, PatchID)
+VALUES ('Ambessa', 'QEW', 25.12);
+INSERT INTO Build (ChampionName, SkillOrder, PatchID)
+VALUES ('Ambessa', 'QEW', 25.11);
+INSERT INTO Build (ChampionName, SkillOrder, PatchID)
+VALUES ('Ambessa', 'QEW', 25.10);
+
+INSERT INTO Build (ChampionName, SkillOrder, PatchID)
 VALUES ('Alistar', 'QWE', 25.13);
 INSERT INTO Build (ChampionName, SkillOrder, PatchID)
 VALUES ('Ezreal', 'QEW', 25.12);
