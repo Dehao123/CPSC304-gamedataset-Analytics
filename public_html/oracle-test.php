@@ -64,7 +64,7 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
 	<p>Inserts a new Matchup. </p>
 	<form method="POST" action="oracle-test.php">
 		<input type="hidden" id="insertQueryRequest" name="insertQueryRequest">
-		ChampName: <input type="text" name="ChampName"> <br /><br />
+		ChampName: <input type="text" name="champName"> <br /><br />
 		counterChamp: <input type="text" name="counterChamp"> <br /><br />
 		patchID: <input type="text" name="patchID"> <br /><br />
 		winrate: <input type="text" name="winrate"> <br /><br />
@@ -106,10 +106,33 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
 
 	<hr />
 
-	<h2>Display Tuples in DemoTable</h2>
+	<!-- <h2>Display Tuples in DemoTable</h2>
 	<form method="GET" action="oracle-test.php">
 		<input type="hidden" id="displayTuplesRequest" name="displayTuplesRequest">
 		<input type="submit" name="displayTuples"></p>
+	</form> -->
+
+	<h2>Display Table Contents</h2>
+	<p>Select a table from the dropdown to get its contents/p>
+	<form method="GET" action="oracle-test.php">
+    	<input type="hidden" id="display" name="displayTuplesRequest">
+    	<label for="tableName">Select a table:</label>
+    	<select name="tableName" id="tableName">
+			<option value="Amateur_player">Amateur_player</option>
+			<option value="Champions">Champions</option>
+			<option value="Stats">Stats</option>
+			<option value="Role">Role</option>
+			<option value="Patch">Patch</option>
+			<option value="Item">Item</option>
+			<option value="Build">Build</option>
+			<option value="Matchup">Matchup</option>
+			<option value="BuildUsesItem">BuildUsesItem</option>
+			<option value="Plays">Plays</option>
+			<option value="Esports_player1">Esports_player1</option>
+			<option value="Esports_player2">Esports_player2</option>
+			<option value="Esports_player3">Esports_player3</option>
+    	</select>
+    <input type="submit" value="Display Table">
 	</form>
 
 
@@ -189,13 +212,23 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
 
 	function printResult($result)
 	{ //prints results from a select statement
-		echo "<br>Retrieved data from table demoTable:<br>";
 		echo "<table>";
-		echo "<tr><th>ID</th><th>Name</th></tr>";
+
+		$cols = oci_num_fields($result);
+    	echo "<tr>";
+    	for ($i = 1; $i <= $cols; $i++) {
+        	$col_name = oci_field_name($result, $i);
+        	echo "<th>" . htmlentities($col_name) . "</th>";
+    	}
+    	echo "</tr>";
 
 		while ($row = OCI_Fetch_Array($result, OCI_ASSOC)) {
-			echo "<tr><td>" . $row["ID"] . "</td><td>" . $row["NAME"] . "</td></tr>"; //or just use "echo $row[0]"
-		}
+        	echo "<tr>";
+        	foreach ($row as $value) {
+            	echo "<td>" . $value . "</td>";
+        	}
+        	echo "</tr>";
+    	}
 
 		echo "</table>";
 	}
@@ -281,7 +314,7 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
 			":matches" => $_POST['matches'],
 		);
 
-		executeBoundSQL("INSERT INTO Matchup (ChampName, counterChamp, patchID, winrate, matches) values (:champName, :counterChamp, :patchID, :winrate, :matches)");
+		executeBoundSQL("INSERT INTO Matchup (ChampionName, Counter_Champion, PatchID, MatchupWinrate, MatchesPlayed) values (:champName, :counterChamp, :patchID, :winrate, :matches)", array($tuple));
 		if ($success) {
 			oci_commit($db_conn);
 			echo "<p>Matchup INSERTED successfully!</p>";
@@ -296,7 +329,7 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
         global $db_conn, $success;
     
         $tuple = array(
-			":roleName" => $_POST['roleNameDelete']
+			":roleName" => $_POST['roleName']
 		);
 
         executeBoundSQL("DELETE FROM Role WHERE RoleName = :roleName");
@@ -332,11 +365,23 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
 		}
 	}
 
-	function handleDisplayRequest()
-	{
-		global $db_conn;
-		$result = executePlainSQL("SELECT * FROM demoTable");
-		printResult($result);
+
+	function handleDisplayRequest() {
+    	global $db_conn;
+    	$tableName = $_GET['tableName'];
+
+    	$allowedTables = [
+    		'Amateur_player', 'Esports_player1', 'Esports_player2', 'Esports_player3',
+        	'Role', 'Patch', 'Item', 'Champions', 'Stats', 'Build', 'Matchup',
+        	'BuildUsesItem'
+    	];
+
+    	if (in_array($tableName, $allowedTables)) {
+        	$result = executePlainSQL("SELECT * FROM " . $tableName);
+        	printResult($result, "Here are the contents of: " . $tableName);
+    	} else {
+        	echo "<p>Error, Check if table name is valid.</p>";
+    	}
 	}
 
 	// HANDLE ALL POST ROUTES
@@ -360,15 +405,9 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
 	function handleGETRequest()
 	{
 		if (connectToDB()) {
-			if (array_key_exists('countTuples', $_GET)) {
-				handleCountRequest();
-			} elseif (array_key_exists('displayTuples', $_GET)) {
+			if (array_key_exists('displayTuplesRequest', $_GET)) {
 				handleDisplayRequest();
-			} elseif (array_key_exists('joinTablesRequest', $_GET)) {
-				handleJoinRequest();
-			} else if (array_key_exists('joinTablesRequest', $_GET)) {
-				handleJoinRequest();
-			}   
+			}
 
 			disconnectFromDB();
 		}
@@ -376,7 +415,7 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
 
 	if (isset($_POST['reset']) || isset($_POST['insertSubmit']) || isset($_POST['deleteSubmit'])) {
 		handlePOSTRequest();
-	} else if (isset($_GET['countTupleRequest']) || isset($_GET['displayTuplesRequest']) || isset($_GET['joinTablesRequest'])) {
+	} else if (isset($_GET['displayTuplesRequest'])) {
 		handleGETRequest();
 	}
 
