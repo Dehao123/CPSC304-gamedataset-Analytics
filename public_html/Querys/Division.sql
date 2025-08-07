@@ -1,0 +1,7 @@
+SELECT M1.ChampionName
+FROM Matchup M1
+GROUP BY M1.ChampionName
+HAVING COUNT(DISTINCT M1.PatchID) = (
+    SELECT COUNT(DISTINCT PatchID)
+    FROM Patch
+)
