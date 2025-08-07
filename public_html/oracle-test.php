@@ -60,7 +60,8 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
 
 	<hr />
 
-	<h2>Insert Values into DemoTable</h2>
+	<h2>Insert Values</h2>
+	<p>Inserts a new Matchup. </p>
 	<form method="POST" action="oracle-test.php">
 		<input type="hidden" id="insertQueryRequest" name="insertQueryRequest">
 		ChampName: <input type="text" name="ChampName"> <br /><br />
@@ -88,19 +89,20 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
     <hr />
 
     <h2>Delete Champion by their ChampionName in Champions</h2>
+	<p>Deletes a role. Will cascade and delete all champions of that role. </p>
     <form method="POST" action="oracle-test.php">
         <input type="hidden" id="deleteQueryRequest" name="deleteQueryRequest">
-        ChampionName: <input type="text" name="championName"> <br /><br />
+        Role to Delete (Top, Mid...): <input type="text" name="roleName"> <br /><br />
         <input type="submit" value="Delete" name="deleteSubmit"></p>
     </form> 
 
 	<hr />
 
-	<h2>Count the Tuples in DemoTable</h2>
+	<!-- <h2>Count the Tuples in DemoTable</h2>
 	<form method="GET" action="oracle-test.php">
 		<input type="hidden" id="countTupleRequest" name="countTupleRequest">
 		<input type="submit" name="countTuples"></p>
-	</form>
+	</form> -->
 
 	<hr />
 
