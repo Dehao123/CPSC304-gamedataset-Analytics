@@ -211,27 +211,29 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
 	}
 
 	function printResult($result)
-	{ //prints results from a select statement
-		echo "<table>";
+	{
+    	echo "<table>";
 
-		$cols = oci_num_fields($result);
+    	// This part is working, as you see the headers
+    	$cols = oci_num_fields($result);
     	echo "<tr>";
     	for ($i = 1; $i <= $cols; $i++) {
-        	$col_name = oci_field_name($result, $i);
+       		$col_name = oci_field_name($result, $i);
         	echo "<th>" . htmlentities($col_name) . "</th>";
     	}
     	echo "</tr>";
 
-		while ($row = OCI_Fetch_Array($result, OCI_ASSOC)) {
-        	echo "<tr>";
+    	// The problem is that this loop is not running
+    	while ($row = oci_fetch_array($result, OCI_ASSOC)) {
+       		echo "<tr>";
         	foreach ($row as $value) {
-            	echo "<td>" . $value . "</td>";
+            	echo "<td>" . htmlentities($value) . "</td>";
         	}
         	echo "</tr>";
     	}
 
-		echo "</table>";
-	}
+    	echo "</table>";
+}
 
 	function connectToDB()
 	{
@@ -287,7 +289,7 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
 		$success = true;
 
 		$sql_script = file_get_contents('databaseSetup.sql');
-		$statements = explode(';', $sql_script);
+		$statements = preg_split('/;\s*$/m', $sql_script);
     	foreach ($statements as $statement) {
             if (trim($statement) != '') {
             	executePlainSQL($statement);
@@ -296,6 +298,7 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
 
 		if ($success) {
 			echo "<p> Reset Successful! </p>";
+			oci_commit($db_conn);
 		} else {
 			echo "<p> Reset Failed. check errors </p>";
 		}
@@ -332,7 +335,7 @@ $show_debug_alert_messages = False; // show which methods are being triggered (s
 			":roleName" => $_POST['roleName']
 		);
 
-        executeBoundSQL("DELETE FROM Role WHERE RoleName = :roleName");
+        executeBoundSQL("DELETE FROM Role WHERE RoleName = :roleName", array($tuple));
         if ($success) {
 			oci_commit($db_conn);
 			echo "<p>Role DELETED successfully!</p>";
