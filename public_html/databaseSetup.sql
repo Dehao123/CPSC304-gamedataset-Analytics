@@ -248,6 +248,20 @@ INSERT INTO Matchup(ChampionName, Counter_Champion, PatchID, MatchupWinrate,
                     MatchesPlayed)
 VALUES ('Alistar', 'Braum', 25.13, 39.39, '33');
 
+INSERT INTO Matchup(ChampionName, Counter_Champion, PatchID, MatchupWinrate,
+                    MatchesPlayed)
+VALUES ('Ambessa', 'Renekton', 25.13, 47.22, '36');
+INSERT INTO Matchup(ChampionName, Counter_Champion, PatchID, MatchupWinrate,
+                    MatchesPlayed)
+VALUES ('Ambessa', 'Jayce', 25.12, 46.15, '33');
+INSERT INTO Matchup(ChampionName, Counter_Champion, PatchID, MatchupWinrate,
+                    MatchesPlayed)
+VALUES ('Ambessa', 'jax', 25.11, 45.25, '35');
+INSERT INTO Matchup(ChampionName, Counter_Champion, PatchID, MatchupWinrate,
+                    MatchesPlayed)
+VALUES ('Ambessa', 'Aurora', 25.10, 48.12, '38');
+
+
 
 
 
