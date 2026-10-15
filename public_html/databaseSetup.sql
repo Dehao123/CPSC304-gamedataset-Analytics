@@ -231,6 +231,9 @@ VALUES ('Azir', 'WQE', 25.11);
 INSERT INTO Build (ChampionName, SkillOrder, PatchID)
 VALUES ('Pantheon', 'QWE', 25.10);
 
+INSERT INTO Build (ChampionName, SkillOrder, PatchID)
+VALUES ('Alistar', 'WQE', 25.12);
+
 
 INSERT INTO Matchup(ChampionName, Counter_Champion, PatchID, MatchupWinrate,
                     MatchesPlayed)
